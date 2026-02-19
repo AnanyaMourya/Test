@@ -1,26 +1,16 @@
-import os
-import requests
-from fastapi import FastAPI, UploadFile, File
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi import FastAPI
+from pydantic import BaseModel
 from logic import RxAuditor
 
 app = FastAPI()
 auditor = RxAuditor()
 
-@app.get("/", response_class=HTMLResponse)
-async def main():
-    return FileResponse('index.html')
+class RxData(BaseModel):
+    ward: str
+    checks: dict
+    meds_text: str
 
-@app.post("/analyze")
-async def analyze(file: UploadFile = File(...)):
-    # Cloud OCR Step (Using OCR.space free API)
-    image_data = await file.read()
-    payload = {'apikey': 'helloworld', 'language': 'eng'} # Replace with your free key
-    files = {'file': image_data}
-    response = requests.post('https://api.ocr.space/parse/image', data=payload, files=files)
-    
-    raw_text = response.json().get("ParsedResults")[0].get("ParsedText")
-    
-    # Audit Step
-    results = auditor.run_audit(raw_text)
-    return {"text": raw_text, "results": results}
+@app.post("/audit")
+async def process_audit(data: RxData):
+    meds = [m.strip() for m in data.meds_text.split('\n') if m.strip()]
+    return auditor.run_comprehensive_audit(data.ward, data.checks, meds)
