@@ -2,42 +2,31 @@ import pandas as pd
 
 class RxAuditor:
     def __init__(self):
+        # I check against your specific WHO indicator targets [cite: 194]
         self.edl = pd.read_csv('essential_drugs.csv')['drug_name'].str.lower().tolist()
-        self.abx = pd.read_csv('antibiotics.csv')['drug_name'].str.lower().tolist()
-        self.ddi = pd.read_csv('interactions.csv')
 
-    def run_comprehensive_audit(self, ward, checks, meds_list):
+    def process_wizard(self, med_list, data):
         flags = []
-        meds_lower = [m.lower() for m in meds_list]
+        count = len(med_list)
         
-        # 1. Missing Critical Info [cite: 82, 83]
-        if not checks['name']: flags.append("Missing Patient Demographics")
-        if not checks['doc']: flags.append("Missing Prescriber Signature/Reg No.")
-        if not checks['diag']: flags.append("Missing Diagnosis/Indication")
-
-        # 2. Polypharmacy Check (>= 5 drugs) [cite: 80, 81]
-        is_poly = len(meds_list) >= 5
-        if is_poly:
-            flags.append("Polypharmacy: Increased interaction risk (~58%) [cite: 99]")
-
-        # 3. Drug-Drug Interactions (DDIs) [cite: 93, 98]
-        for _, row in self.ddi.iterrows():
-            if row['drug_a'].lower() in str(meds_lower) and row['drug_b'].lower() in str(meds_lower):
-                flags.append(f"DDI ({row['severity']}): {row['drug_a']} + {row['drug_b']}")
-
-        # 4. Antibiotic/Injection Tracking [cite: 110, 111]
-        has_abx = any(a in str(meds_lower) for a in self.abx)
-        has_inj = any("inj" in m or "iv" in m or "im" in m for m in meds_lower)
+        # Polypharmacy check per WHO standards (>=5 drugs) [cite: 80, 167]
+        is_poly = count >= 5
         
-        if has_abx: flags.append("WHO Metric: Antibiotic Encounter")
-        if has_inj: flags.append("WHO Metric: Injection Encounter [cite: 101]")
+        # Necessity Checkpoints audit [cite: 82, 83]
+        if not data.name_present: flags.append("Patient info is missing - please verify identification.")
+        if not data.doc_present: flags.append("Prescriber info is missing - ensure a valid doctor signed this.")
+        if not data.diag_present: flags.append("Diagnosis is missing - clinical rationale unclear.")
+        
+        # EDL Check [cite: 21, 63]
+        edl_matches = [m for m in med_list if m.lower() in self.edl]
+        edl_pct = (len(edl_matches) / count * 100) if count > 0 else 0
+        
+        if edl_pct < 100:
+            flags.append(f"Only {round(edl_pct)}% of drugs are on the Essential List (Target: 100%).")
 
         return {
-            "ward": ward,
+            "count": count,
+            "polypharmacy": is_poly,
             "flags": flags,
-            "stats": {
-                "total": len(meds_list),
-                "polypharmacy": is_poly,
-                "has_antibiotic": has_abx
-            }
+            "edl_pct": edl_pct
         }
