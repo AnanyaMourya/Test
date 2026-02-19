@@ -1,24 +1,89 @@
 <!DOCTYPE html>
 <html>
-<head><title>RxHelper Prototype</title></head>
-<body style="font-family: Arial; padding: 50px;">
-    <h1>RxHelper: Prescription Audit</h1>
-    <input type="file" id="upload">
-    <button onclick="check()">Analyze</button>
-    <div id="res" style="margin-top:20px; border:1px solid #000; padding:10px; display:none">
-        <h3>Results:</h3>
-        <p id="flags" style="color:red"></p>
-        <p id="meds"></p>
+<head>
+    <title>RxHelper Professional Audit</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; max-width: 1000px; margin: auto; padding: 20px; background: #f0f2f5; }
+        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h3 { border-bottom: 2px solid #007bff; padding-bottom: 10px; margin-top: 0; }
+        .input-group { margin-bottom: 15px; }
+        textarea { width: 100%; height: 120px; border: 1px solid #ccc; border-radius: 4px; padding: 10px; }
+        .btn { background: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; width: 100%; font-size: 16px; }
+        .flag { color: #d9534f; background: #fdf7f7; padding: 10px; border-left: 5px solid #d9534f; margin: 10px 0; }
+        .success { color: #28a745; font-weight: bold; }
+        .report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    </style>
+</head>
+<body>
+    <h1>RxHelper: AI-Driven Prescription Audit</h1>
+    <div class="container">
+        <div class="card">
+            <h3>Step 1: Clinical Context</h3>
+            <div class="input-group">
+                <label>Ward/Department:</label>
+                <select id="ward">
+                    <option>General Medicine</option>
+                    <option>Pediatrics</option>
+                    <option>Surgery</option>
+                    <option>Outpatient (OPD)</option>
+                </select>
+            </div>
+            <label><input type="checkbox" id="has_name"> Patient Name/Age [cite: 43]</label>
+            <label><input type="checkbox" id="has_doc"> Doctor Sign/Reg No. [cite: 44]</label>
+            <label><input type="checkbox" id="has_diag"> Clinical Diagnosis [cite: 46]</label>
+            <label><input type="checkbox" id="has_date"> Prescription Date [cite: 45]</label>
+            
+            <h3>Step 2: Medications</h3>
+            <p>Enter meds (one per line). Use "Inj" for injectables[cite: 70].</p>
+            <textarea id="meds" placeholder="e.g. Amoxicillin 500mg&#10;Inj Ceftriaxone&#10;Metformin"></textarea>
+            <button class="btn" onclick="analyze()">Generate Audit Report</button>
+        </div>
+
+        <div id="results" class="card" style="display:none;">
+            <h3>Audit Results & WHO Indicators</h3>
+            <div class="report-grid">
+                <div><b>Total Drugs:</b> <span id="count"></span></div>
+                <div><b>Polypharmacy:</b> <span id="poly"></span></div>
+            </div>
+            <hr>
+            <h4>Safety Flags[cite: 78]:</h4>
+            <div id="flag_list"></div>
+            <hr>
+            <h4>WHO Benchmarks[cite: 115]:</h4>
+            <p id="who_stats"></p>
+        </div>
     </div>
+
     <script>
-        async function check() {
-            let fd = new FormData();
-            fd.append('file', document.getElementById('upload').files[0]);
-            let res = await fetch('/analyze', {method: 'POST', body: fd});
-            let data = await res.json();
-            document.getElementById('res').style.display = 'block';
-            document.getElementById('flags').innerText = data.results.flags.join(", ");
-            document.getElementById('meds').innerText = "Meds found: " + data.results.medications.join(", ");
+        async function analyze() {
+            const payload = {
+                ward: document.getElementById('ward').value,
+                checks: {
+                    name: document.getElementById('has_name').checked,
+                    doc: document.getElementById('has_doc').checked,
+                    diag: document.getElementById('has_diag').checked,
+                    date: document.getElementById('has_date').checked
+                },
+                meds_text: document.getElementById('meds').value
+            };
+
+            const res = await fetch('/audit', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('count').innerText = data.stats.total;
+            document.getElementById('poly').innerText = data.stats.polypharmacy ? "⚠️ YES" : "✅ NO";
+            
+            document.getElementById('flag_list').innerHTML = data.flags.map(f => `<div class="flag">${f}</div>`).join('');
+            document.getElementById('who_stats').innerHTML = `
+                Avg Drugs Target: 1.6-1.8 [cite: 115]<br>
+                Status: ${data.stats.total > 1.8 ? 'Above WHO Standard' : 'Within Standard'}
+            `;
         }
     </script>
 </body>
