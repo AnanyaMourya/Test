@@ -1,90 +1,108 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>RxHelper Professional Audit</title>
+    <meta charset="UTF-8">
+    <title>RxHelper | Patient-Centered Audit</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; max-width: 1000px; margin: auto; padding: 20px; background: #f0f2f5; }
-        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        h3 { border-bottom: 2px solid #007bff; padding-bottom: 10px; margin-top: 0; }
-        .input-group { margin-bottom: 15px; }
-        textarea { width: 100%; height: 120px; border: 1px solid #ccc; border-radius: 4px; padding: 10px; }
-        .btn { background: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; width: 100%; font-size: 16px; }
-        .flag { color: #d9534f; background: #fdf7f7; padding: 10px; border-left: 5px solid #d9534f; margin: 10px 0; }
-        .success { color: #28a745; font-weight: bold; }
-        .report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        :root {
+            --pastel-blue: #e3f2fd; --pastel-green: #e8f5e9; --soft-text: #455a64;
+            --accent-blue: #90caf9; --accent-green: #a5d6a7;
+        }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #fcfdfd; color: var(--soft-text); margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .wizard-card { background: white; border-radius: 20px; padding: 40px; width: 100%; max-width: 600px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        h1 { color: #5c6bc0; text-align: center; font-weight: 300; }
+        .step { display: none; animation: fadeIn 0.5s; }
+        .step.active { display: block; }
+        .upload-area { border: 2px dashed var(--accent-blue); padding: 30px; text-align: center; border-radius: 15px; background: var(--pastel-blue); cursor: pointer; }
+        .check-item { background: var(--pastel-green); padding: 15px; margin: 10px 0; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; }
+        textarea { width: 100%; height: 120px; border-radius: 10px; border: 1px solid var(--accent-blue); padding: 15px; font-size: 16px; outline: none; }
+        .btn { background: #7986cb; color: white; border: none; padding: 15px 30px; border-radius: 25px; cursor: pointer; width: 100%; font-size: 18px; margin-top: 20px; transition: 0.3s; }
+        .btn:hover { background: #5c6bc0; }
+        .report-box { background: #fafafa; border-left: 8px solid var(--accent-green); padding: 20px; margin-top: 20px; border-radius: 0 15px 15px 0; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <h1>RxHelper: AI-Driven Prescription Audit</h1>
-    <div class="container">
-        <div class="card">
-            <h3>Step 1: Clinical Context</h3>
-            <div class="input-group">
-                <label>Ward/Department:</label>
-                <select id="ward">
-                    <option>General Medicine</option>
-                    <option>Pediatrics</option>
-                    <option>Surgery</option>
-                    <option>Outpatient (OPD)</option>
-                </select>
-            </div>
-            <label><input type="checkbox" id="has_name"> Patient Name/Age [cite: 43]</label>
-            <label><input type="checkbox" id="has_doc"> Doctor Sign/Reg No. [cite: 44]</label>
-            <label><input type="checkbox" id="has_diag"> Clinical Diagnosis [cite: 46]</label>
-            <label><input type="checkbox" id="has_date"> Prescription Date [cite: 45]</label>
-            
-            <h3>Step 2: Medications</h3>
-            <p>Enter meds (one per line). Use "Inj" for injectables[cite: 70].</p>
-            <textarea id="meds" placeholder="e.g. Amoxicillin 500mg&#10;Inj Ceftriaxone&#10;Metformin"></textarea>
-            <button class="btn" onclick="analyze()">Generate Audit Report</button>
-        </div>
 
-        <div id="results" class="card" style="display:none;">
-            <h3>Audit Results & WHO Indicators</h3>
-            <div class="report-grid">
-                <div><b>Total Drugs:</b> <span id="count"></span></div>
-                <div><b>Polypharmacy:</b> <span id="poly"></span></div>
-            </div>
-            <hr>
-            <h4>Safety Flags[cite: 78]:</h4>
-            <div id="flag_list"></div>
-            <hr>
-            <h4>WHO Benchmarks[cite: 115]:</h4>
-            <p id="who_stats"></p>
+<div class="wizard-card">
+    <h1>RxHelper</h1>
+
+    <div id="step1" class="step active">
+        <p style="text-align: center;">Welcome. Let's start by looking at your prescription photo.</p>
+        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+            <p>Click to upload Prescription Image</p>
+            <input type="file" id="fileInput" hidden onchange="nextStep(2)">
         </div>
     </div>
 
-    <script>
-        async function analyze() {
-            const payload = {
-                ward: document.getElementById('ward').value,
-                checks: {
-                    name: document.getElementById('has_name').checked,
-                    doc: document.getElementById('has_doc').checked,
-                    diag: document.getElementById('has_diag').checked,
-                    date: document.getElementById('has_date').checked
-                },
-                meds_text: document.getElementById('meds').value
-            };
+    <div id="step2" class="step">
+        <p>Is the following information clearly visible on the paper?</p>
+        <div id="checkpoint-container">
+            <div class="check-item">
+                <span>Patient Name & Age</span>
+                <input type="checkbox" id="check_name" onchange="checkItem(0)">
+            </div>
+            <div class="check-item" id="item_doc" style="display:none">
+                <span>Doctor's Name & Reg No.</span>
+                <input type="checkbox" id="check_doc" onchange="checkItem(1)">
+            </div>
+            <div class="check-item" id="item_diag" style="display:none">
+                <span>Clinical Diagnosis</span>
+                <input type="checkbox" id="check_diag" onchange="checkItem(2)">
+            </div>
+        </div>
+        <button id="btn_step2" class="btn" style="display:none" onclick="nextStep(3)">Next: Medications</button>
+    </div>
 
-            const res = await fetch('/audit', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(payload)
-            });
-            const data = await res.json();
+    <div id="step3" class="step">
+        <p>Almost there! Please type the names of the medicines prescribed.</p>
+        <textarea id="meds_input" placeholder="Type medicines here... (e.g., Amoxicillin, Metformin)"></textarea>
+        <button class="btn" onclick="generateReport()">Generate Audit Report</button>
+    </div>
 
-            document.getElementById('results').style.display = 'block';
-            document.getElementById('count').innerText = data.stats.total;
-            document.getElementById('poly').innerText = data.stats.polypharmacy ? "⚠️ YES" : "✅ NO";
-            
-            document.getElementById('flag_list').innerHTML = data.flags.map(f => `<div class="flag">${f}</div>`).join('');
-            document.getElementById('who_stats').innerHTML = `
-                Avg Drugs Target: 1.6-1.8 [cite: 115]<br>
-                Status: ${data.stats.total > 1.8 ? 'Above WHO Standard' : 'Within Standard'}
-            `;
-        }
-    </script>
+    <div id="step4" class="step">
+        <h3>Your Audit Report</h3>
+        <div id="report_content" class="report-box"></div>
+        <button class="btn" onclick="location.reload()" style="background: var(--accent-green);">Start New Audit</button>
+    </div>
+</div>
+
+<script>
+    function nextStep(n) {
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.getElementById('step' + n).classList.add('active');
+    }
+
+    function checkItem(index) {
+        if(index === 0) document.getElementById('item_doc').style.display = 'flex';
+        if(index === 1) document.getElementById('item_diag').style.display = 'flex';
+        if(index === 2) document.getElementById('btn_step2').style.display = 'block';
+    }
+
+    async function generateReport() {
+        const meds = document.getElementById('meds_input').value;
+        const res = await fetch('/audit_v2', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                meds: meds,
+                name_present: document.getElementById('check_name').checked,
+                doc_present: document.getElementById('check_doc').checked,
+                diag_present: document.getElementById('check_diag').checked
+            })
+        });
+        const data = await res.json();
+        
+        let reportHTML = `
+            <p><b>Medicine Count:</b> ${data.count} (WHO Target: 1.6 - 1.8) [cite: 13, 115]</p>
+            <p><b>Safety Status:</b> ${data.polypharmacy ? '<span style="color:red">Polypharmacy Alert</span>' : '<span style="color:green">Safe Count</span>'} [cite: 81, 167]</p>
+            <hr>
+            <h4>Analysis:</h4>
+            <ul>${data.flags.map(f => `<li>${f}</li>`).join('')}</ul>
+        `;
+        document.getElementById('report_content').innerHTML = reportHTML;
+        nextStep(4);
+    }
+</script>
 </body>
 </html>
