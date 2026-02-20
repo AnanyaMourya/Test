@@ -1,0 +1,21 @@
+Drug Name,Drug Class,Generation / Sub-class,Primary Clinical Uses
+Amoxicillin,Penicillins,Aminopenicillin,"Ear infections, Strep throat, Pneumonia"
+Penicillin V,Penicillins,Natural Penicillin,"Dental infections, Strep pharyngitis"
+Piperacillin/Tazobactam,Penicillins,Extended Spectrum,Severe hospital-acquired infections (Sepsis)
+Cephalexin,Cephalosporins,1st Generation,"Skin/Soft tissue infections, UTIs"
+Cefuroxime,Cephalosporins,2nd Generation,"Sinusitis, Respiratory tract infections"
+Ceftriaxone,Cephalosporins,3rd Generation,"Meningitis, Gonorrhea, Lyme disease"
+Cefepime,Cephalosporins,4th Generation,Severe Febrile Neutropenia
+Azithromycin,Macrolides,-,"Chlamydia, ""Z-Pak"" for pneumonia/bronchitis"
+Clarithromycin,Macrolides,-,"H. pylori, COPD exacerbations"
+Ciprofloxacin,Fluoroquinolones,2nd Generation,"Prostatitis, Traveler's diarrhea, Bone infections"
+Levofloxacin,Fluoroquinolones,3rd Generation,"Community-acquired pneumonia, Sinusitis"
+Doxycycline,Tetracyclines,Tetracycline,"Acne, Lyme disease, Malaria prophylaxis"
+Minocycline,Tetracyclines,—,"Skin infections, Acne"
+Gentamicin,Aminoglycosides,—,Serious Gram-negative infections (IV)
+Meropenem,Carbapenems,—,Very broad spectrum for multidrug-resistant bugs
+Vancomycin,Glycopeptides,—,"MRSA infections, C. diff (oral form)"
+Sulfamethoxazole/Trimethoprim,Sulfonamides,—,"UTIs, Pneumocystis pneumonia (PCP)"
+Metronidazole,Nitroimidazoles,—,"Anaerobic infections, Giardia, Bacterial vaginosis"
+Clindamycin,Lincosamides,—,"Bone infections, Dental infections (penicillin allergy)"
+Nitrofurantoin,Nitrofurans,—,Uncomplicated Urinary Tract Infections (UTIs)

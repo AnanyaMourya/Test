@@ -1,0 +1,167 @@
+Primary Drug,Interacting Drug,Mechanism,Clinical Effect,Severity,Management
+"ACE inhibitors (e.g., enalapril)","Potassium-sparing diuretics (spironolactone, amiloride)",Additive potassium retention,Hyperkalemia,Major,"Monitor K+, avoid combination in high-risk patients"
+ACE inhibitors,Potassium supplements,Additive effect,Hyperkalemia,Major,Avoid or monitor closely
+ACE inhibitors,NSAIDs,Reduced prostaglandin synthesis ? ? renal blood flow,"Reduced antihypertensive effect, renal impairment",Moderate–Major,Monitor BP & renal function
+ACE inhibitors,Diuretics (loop/thiazide),Volume depletion,First-dose hypotension,Moderate,Start ACEI at low dose
+ACE inhibitors,Lithium,Reduced renal clearance of lithium,Lithium toxicity,Major,Monitor lithium levels
+ACE inhibitors,Other antihypertensives,Additive BP lowering,Hypotension,Mild–Moderate,Dose adjustment
+ARBs,Potassium-sparing diuretics,Additive potassium retention,Hyperkalemia,Major,Monitor potassium
+ARBs,NSAIDs,Reduced renal perfusion,Acute kidney injury,Major,Monitor renal function
+ARBs,Lithium,Reduced lithium excretion,Lithium toxicity,Major,Monitor lithium levels
+ACE inhibitors / ARBs,Dual RAAS blockade (ACEI + ARB),Excess RAAS suppression,"Hyperkalemia, renal failure",Major,Generally avoid combination
+Alcohol,Benzodiazepines,Additive CNS depression,"Sedation, respiratory depression",Major,Avoid combination
+Alcohol,Opioids,Additive respiratory depression,"Coma, death",Major,Contraindicated
+Alcohol,Metronidazole,Disulfiram-like reaction,"Flushing, vomiting",Major,Avoid alcohol
+Alcohol,Sulfonylureas,Hypoglycemia,Severe hypoglycemia,Moderate–Major,Caution
+Alcohol,Warfarin (acute use),Enzyme inhibition,? INR,Moderate,Monitor INR
+Alcohol (chronic),Warfarin,Enzyme induction,? INR,Moderate,Monitor INR
+Alcohol,Antihypertensives,Additive vasodilation,Hypotension,Mild–Moderate,Counsel patient
+"Alpha blockers (prazosin, doxazosin)",PDE-5 inhibitors (sildenafil),Additive vasodilation,Severe hypotension,Major,Use lowest doses
+Alpha blockers,Other antihypertensives,Additive BP reduction,Postural hypotension,Moderate,Monitor BP
+Alpha blockers,Beta blockers,Additive cardiovascular effect,Hypotension,Moderate,Caution
+Neuromuscular blockers,Aminoglycosides,Neuromuscular transmission inhibition,Prolonged paralysis,Major,Monitor respiration
+Volatile anesthetics,Beta blockers,Myocardial depression,Hypotension,Moderate,Monitor
+Suxamethonium,Cholinesterase inhibitors,Inhibited metabolism,Prolonged apnea,Major,Avoid or monitor
+NSAIDs,Warfarin,Platelet inhibition + gastric irritation,Bleeding risk,Major,Avoid / monitor INR
+NSAIDs,ACE inhibitors,Renal prostaglandin inhibition,Renal impairment,Major,Monitor creatinine
+NSAIDs,Diuretics,Reduced diuretic effect,Fluid retention,Moderate,Monitor
+Opioids,Benzodiazepines,Additive CNS depression,Respiratory depression,Major,Avoid
+Paracetamol (high dose),Warfarin,Unknown (possibly hepatic),? INR,Moderate,Monitor INR
+"Sympathomimetic anorectics (e.g., phentermine)",MAO inhibitors,Excess catecholamines,Hypertensive crisis,Major,Contraindicated
+"Stimulants (e.g., amphetamines)",SSRIs / SNRIs,Serotonergic excess,Serotonin syndrome,Major,Avoid / monitor
+Stimulants,Antihypertensives,Opposing effects,Reduced BP control,Moderate,Monitor BP
+Sibutramine,CYP3A4 inhibitors,Reduced metabolism,"? BP, tachycardia",Moderate–Major,Avoid strong inhibitors
+"Azole antifungals (ketoconazole, itraconazole)","Statins (simvastatin, lovastatin)",CYP3A4 inhibition,Rhabdomyolysis,Major,Avoid combination
+Azoles,Warfarin,CYP inhibition,"? INR, bleeding",Major,Monitor INR
+Azoles,Benzodiazepines (midazolam),CYP3A4 inhibition,Excess sedation,Major,Dose reduction
+Metronidazole,Warfarin,CYP inhibition,? INR,Major,Monitor INR
+Albendazole,Cimetidine,Reduced metabolism,? Albendazole levels,Moderate,Monitor
+Amiodarone,Warfarin,CYP2C9 inhibition,? INR,Major,Reduce warfarin dose
+Amiodarone,Digoxin,Reduced clearance,Digoxin toxicity,Major,Reduce digoxin dose
+Quinidine,Digoxin,Reduced renal clearance,? Digoxin levels,Major,Monitor levels
+Antiarrhythmics (QT-prolonging),Macrolides / Antipsychotics,Additive QT prolongation,Torsades de pointes,Major,Avoid
+Flecainide,CYP2D6 inhibitors,Reduced metabolism,Arrhythmias,Moderate,Monitor ECG
+Rifampicin,Oral contraceptives,CYP3A4 induction,Contraceptive failure,Major,Use alternative contraception
+Rifampicin,Warfarin,Enzyme induction,? INR,Major,Increase warfarin dose
+Macrolides (erythromycin),Statins,CYP3A4 inhibition,Myopathy,Major,Avoid simvastatin
+Fluoroquinolones,Theophylline,CYP1A2 inhibition,Theophylline toxicity,Major,Monitor levels
+Tetracyclines,Warfarin,Reduced vitamin K flora,? INR,Moderate,Monitor INR
+Aminoglycosides,Loop diuretics,Additive ototoxicity,Hearing loss,Major,Avoid if possible
+Donepezil,Anticholinergics,Opposing pharmacodynamic effects,Reduced efficacy,Moderate,Avoid combination
+Anticholinesterases,Beta blockers,Bradycardia,Syncope,Moderate–Major,Monitor HR
+Anticholinesterases,Neuromuscular blockers,Prolonged blockade,Respiratory depression,Major,Monitor closely
+Warfarin,NSAIDs,Platelet + gastric effect,Bleeding,Major,Avoid / monitor INR
+Warfarin,Amiodarone,CYP inhibition,? INR,Major,Reduce dose
+Warfarin,Metronidazole,CYP inhibition,? INR,Major,Monitor INR
+Warfarin,Rifampicin,Enzyme induction,? INR,Major,Increase dose
+Heparin,Antiplatelets,Additive anticoagulation,Bleeding,Major,Monitor
+DOACs,Strong CYP3A4 inhibitors,Reduced metabolism,Bleeding risk,Major,Avoid
+Insulin,Beta blockers,Mask hypoglycemia symptoms,Delayed detection of hypoglycemia,Moderate,Monitor glucose closely
+"Sulfonylureas (glimepiride, gliclazide)",Azoles / Macrolides,CYP inhibition,Severe hypoglycemia,Major,Monitor glucose
+Metformin,Cimetidine,Reduced renal clearance,? Metformin levels,Moderate,Monitor renal function
+Metformin,Contrast media,Renal impairment risk,Lactic acidosis,Major,Withhold before procedure
+Pioglitazone,Rifampicin,CYP induction,Reduced efficacy,Moderate,Monitor glucose
+DPP-4 inhibitors,Strong CYP3A4 inhibitors,? Drug levels,Adverse effects,Moderate,Dose adjust
+Phenytoin,Warfarin,CYP2C9 interaction,Variable INR,Major,Monitor INR closely
+Carbamazepine,Oral contraceptives,CYP3A4 induction,Contraceptive failure,Major,Alternative contraception
+Valproate,Lamotrigine,Inhibits metabolism,Lamotrigine toxicity,Major,Reduce lamotrigine dose
+Phenytoin,Azoles,CYP inhibition,Phenytoin toxicity,Major,Monitor levels
+Carbamazepine,Macrolides,CYP3A4 inhibition,Toxicity,Major,Avoid erythromycin
+Enzyme-inducing AEDs,Antipsychotics,Reduced levels,Reduced efficacy,Moderate,Dose adjustment
+Sedating antihistamines,Benzodiazepines,Additive CNS depression,Excess sedation,Moderate–Major,Avoid combination
+Terfenadine (withdrawn historically),Macrolides,CYP3A4 inhibition,QT prolongation,Major,Contraindicated
+Antihistamines,Alcohol,Additive CNS depression,Impaired alertness,Moderate,Avoid alcohol
+Antihistamines,Anticholinergics,Additive effect,"Dry mouth, retention",Moderate,Monitor
+Methotrexate,NSAIDs,Reduced renal clearance,Toxicity,Major,Avoid high-dose NSAIDs
+Methotrexate,Trimethoprim,Additive antifolate effect,Bone marrow suppression,Major,Avoid combination
+Ciclosporin,Azoles,CYP3A4 inhibition,Nephrotoxicity,Major,Monitor levels
+Tacrolimus,Macrolides,CYP3A4 inhibition,Toxicity,Major,Monitor levels
+Cyclophosphamide,CYP inducers,Reduced efficacy,Treatment failure,Moderate,Monitor
+Aspirin,Warfarin,Additive bleeding,GI bleeding,Major,Avoid / monitor
+Clopidogrel,Omeprazole,CYP2C19 inhibition,Reduced antiplatelet effect,Major,Use alternative PPI
+Antiplatelets,SSRIs,Platelet serotonin inhibition,Bleeding risk,Moderate–Major,Monitor
+Dual antiplatelet therapy,NSAIDs,Additive bleeding,Major bleeding,Major,Avoid NSAIDs
+Antipsychotics (QT prolonging),Macrolides / Fluoroquinolones,Additive QT prolongation,Torsades de pointes,Major,Avoid
+Clozapine,Carbamazepine,Bone marrow suppression,Agranulocytosis,Major,Contraindicated
+Clozapine,Fluvoxamine,CYP1A2 inhibition,Clozapine toxicity,Major,Reduce dose
+Antipsychotics,Benzodiazepines,Additive CNS depression,Respiratory depression,Moderate–Major,Caution
+Risperidone,CYP2D6 inhibitors,? Levels,EPS risk,Moderate,Monitor
+"SSRIs (fluoxetine, sertraline)",MAO inhibitors,Excess serotonin,Serotonin syndrome,Major,Contraindicated
+SSRIs,Triptans,Additive serotonergic effect,Serotonin syndrome,Major,Monitor closely
+TCAs,"CYP2D6 inhibitors (fluoxetine, paroxetine)",Reduced metabolism,TCA toxicity,Major,Reduce dose
+Antidepressants (QT-prolonging),Macrolides,Additive QT prolongation,Torsades de pointes,Major,Avoid
+Venlafaxine,CYP3A4 inhibitors,? Drug levels,Hypertension,Moderate,Monitor BP
+Bupropion,CYP2D6 substrates,Inhibition,? Substrate levels,Moderate,Dose adjust
+Beta-blockers,Verapamil / Diltiazem,Additive cardiac depression,"Bradycardia, heart block",Major,Avoid or monitor
+Propranolol,CYP2D6 inhibitors,Reduced metabolism,Bradycardia,Moderate,Monitor HR
+Beta-blockers,Insulin / Sulfonylureas,Mask hypoglycemia,Severe hypoglycemia,Moderate,Monitor glucose
+Beta-blockers,Clonidine,Withdrawal interaction,Rebound hypertension,Major,Taper carefully
+Beta-blockers,NSAIDs,Reduced antihypertensive effect,? BP,Moderate,Monitor BP
+Verapamil / Diltiazem,Beta-blockers,Additive AV block,Bradycardia,Major,Avoid combination
+CCBs,CYP3A4 inhibitors (azoles),? Drug levels,Hypotension,Major,Dose adjust
+CCBs,CYP3A4 inducers (rifampicin),? Levels,Reduced efficacy,Moderate,Monitor BP
+CCBs,Statins (simvastatin),CYP3A4 inhibition,Myopathy,Major,Limit statin dose
+Nifedipine,Magnesium sulfate,Additive vasodilation,Hypotension,Moderate,Monitor
+Corticosteroids,NSAIDs,Additive GI irritation,Ulcer / bleeding,Major,Avoid or PPI
+Steroids,Antidiabetics,Hyperglycemia,Reduced glucose control,Moderate,Adjust dose
+Steroids,CYP3A4 inhibitors,? Steroid levels,Cushingoid effects,Moderate–Major,Monitor
+Steroids,Rifampicin,Enzyme induction,Reduced steroid effect,Moderate,Dose increase
+Steroids,Warfarin,Variable INR effect,Bleeding or thrombosis,Moderate,Monitor INR
+Thiazides,Lithium,Reduced renal clearance,Lithium toxicity,Major,Avoid or monitor
+Loop diuretics,Aminoglycosides,Ototoxicity,Hearing loss,Major,Avoid combination
+Potassium-sparing diuretics,ACE inhibitors,Hyperkalemia,Cardiac arrhythmia,Major,Monitor K+
+Diuretics,NSAIDs,Reduced diuretic effect,Fluid retention,Moderate,Monitor
+Diuretics,Digoxin,Hypokalemia,Digoxin toxicity,Major,Monitor electrolytes
+PPIs (omeprazole),Clopidogrel,CYP2C19 inhibition,Reduced antiplatelet effect,Major,Use pantoprazole
+Antacids,Tetracyclines,Chelation,Reduced absorption,Moderate,Separate dosing
+Metoclopramide,Antipsychotics,Dopamine blockade,Extrapyramidal symptoms,Moderate,Avoid
+Loperamide,CYP inhibitors,? Levels,Cardiac toxicity (high dose),Major,Avoid misuse
+H2 blockers (cimetidine),Warfarin,CYP inhibition,? INR,Major,Monitor INR
+Oral contraceptives,Rifampicin,CYP3A4 induction,Contraceptive failure,Major,Use alternative contraception
+Oral contraceptives,Carbamazepine / Phenytoin,Enzyme induction,Reduced efficacy,Major,Use non-hormonal method
+Oral contraceptives,Broad-spectrum antibiotics,Reduced enterohepatic cycling,Reduced efficacy (rare),Moderate,Backup contraception
+Estrogens,Warfarin,Opposing effects on clotting,Altered INR,Moderate,Monitor INR
+Levothyroxine,Iron / Calcium,Reduced absorption,Hypothyroidism,Moderate,Separate dosing
+Simvastatin / Lovastatin,Azole antifungals,CYP3A4 inhibition,Rhabdomyolysis,Major,Contraindicated
+Statins,Macrolides,CYP3A4 inhibition,Myopathy,Major,Avoid simvastatin
+Statins,Fibrates (gemfibrozil),Additive muscle toxicity,Rhabdomyolysis,Major,Avoid high-risk combo
+Statins,Ciclosporin,Reduced clearance,Myopathy,Major,Dose adjust
+Atorvastatin,CYP3A4 inhibitors,? Levels,Myopathy,Moderate–Major,Monitor CK
+Opioids,Benzodiazepines,Additive CNS depression,Respiratory depression,Major,Avoid
+Tramadol,SSRIs,Serotonergic effect,Serotonin syndrome,Major,Monitor
+Methadone,CYP3A4 inhibitors,? Levels,QT prolongation,Major,Monitor ECG
+Codeine,CYP2D6 inhibitors,Reduced activation,Reduced analgesia,Moderate,Consider alternative
+Opioids,Alcohol,Additive CNS depression,Coma,Major,Contraindicated
+Theophylline,Ciprofloxacin,CYP1A2 inhibition,Theophylline toxicity,Major,Monitor levels
+Theophylline,Rifampicin,Enzyme induction,Reduced effect,Moderate,Dose adjustment
+Beta-2 agonists,Beta-blockers,Opposing pharmacologic effects,Bronchospasm,Major,Avoid non-selective BB
+Inhaled steroids,CYP3A4 inhibitors,? Steroid levels,Cushingoid effects,Moderate,Monitor
+Montelukast,CYP inducers,? Levels,Reduced efficacy,Mild–Moderate,Monitor
+Benzodiazepines,Opioids,Additive CNS depression,Respiratory depression,Major,Avoid
+Benzodiazepines,Azoles,CYP3A4 inhibition,Excess sedation,Major,Dose reduction
+Z-drugs (zolpidem),Alcohol,Additive CNS depression,Impaired cognition,Moderate,Avoid
+Sedatives,Antipsychotics,Additive sedation,CNS depression,Moderate,Monitor
+Barbiturates,Warfarin,Enzyme induction,? INR,Major,Monitor INR
+Levothyroxine,Warfarin,Increased clotting factor turnover,? INR,Major,Monitor INR
+Levothyroxine,Antacids / Iron,Reduced absorption,Hypothyroidism,Moderate,Separate dosing
+Antithyroid drugs,Clozapine,Agranulocytosis risk,Severe neutropenia,Major,Avoid combination
+Thyroxine,Carbamazepine,Enzyme induction,? Thyroxine levels,Moderate,Monitor TSH
+Tamsulosin,CYP3A4 inhibitors (ketoconazole),Reduced metabolism,Hypotension,Major,Avoid strong inhibitors
+Sildenafil,Nitrates,Excess vasodilation,Severe hypotension,Major,Contraindicated
+Sildenafil,Alpha-blockers,Additive BP reduction,Postural hypotension,Major,Use lowest dose
+Antimuscarinics (oxybutynin),Anticholinergics,Additive effect,Urinary retention,Moderate,Monitor
+Live vaccines,Immunosuppressants,Reduced immune response,Vaccine failure,Major,Avoid live vaccine
+Vaccines,Corticosteroids (high dose),Immunosuppression,Reduced efficacy,Moderate–Major,Delay vaccination
+Immunoglobulins,Live vaccines,Antibody interference,Reduced vaccine response,Moderate,Space administration
+Iron,Tetracyclines,Chelation,Reduced antibiotic absorption,Moderate,Separate doses
+Calcium,Fluoroquinolones,Chelation,Reduced absorption,Moderate,Separate dosing
+Vitamin K,Warfarin,Opposing pharmacologic effect,? INR,Major,Monitor INR
+Potassium supplements,ACE inhibitors,Hyperkalemia,Arrhythmia,Major,Monitor K+
+Allopurinol,Azathioprine,Inhibits metabolism,Bone marrow suppression,Major,Reduce azathioprine dose
+Colchicine,CYP3A4 inhibitors,? Levels,Toxicity,Major,Avoid strong inhibitors
+Bisphosphonates,Calcium,Reduced absorption,Reduced efficacy,Moderate,Separate dosing
+Botulinum toxin,Aminoglycosides,Neuromuscular blockade,Respiratory depression,Major,Avoid combination
+QT-prolonging drugs,Other QT drugs,Additive QT prolongation,Torsades de pointes,Major,Avoid combination
+Macrolides,Antipsychotics,QT prolongation,Arrhythmia,Major,Monitor ECG
+Fluoroquinolones,Antiarrhythmics,Additive QT,Torsades,Major,Avoid
+Methadone,CYP inhibitors,? Levels,QT prolongation,Major,ECG monitoring
