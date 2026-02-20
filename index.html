@@ -1,36 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RxHelper Audit</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #fcfdfd; padding: 20px; display: flex; justify-content: center; }
+        .wizard-card { background: white; border-radius: 20px; padding: 40px; width: 100%; max-width: 600px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .step { display: none; } .active { display: block; }
+        .btn { background: #7986cb; color: white; border: none; padding: 15px; border-radius: 25px; cursor: pointer; width: 100%; margin-top: 20px; }
+        .report-box { background: #fafafa; border-left: 8px solid #a5d6a7; padding: 20px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+<div class="wizard-card">
+    <div id="step1" class="step active">
+        <textarea id="meds_input" style="width:100%; height:100px;" placeholder="Enalapril, Spironolactone"></textarea>
+        <label><input type="checkbox" id="check_name"> Patient Info Visible?</label>
+        <button class="btn" onclick="generateReport()">Generate Audit</button>
+    </div>
+    <div id="step4" class="step">
+        <h3>Audit Report</h3>
+        <div id="report_content" class="report-box"></div>
+        <button class="btn" onclick="location.reload()">New Audit</button>
+    </div>
+</div>
 <script>
-    async function runAudit() {
+    async function generateReport() {
+        const meds = document.getElementById('meds_input').value;
         const res = await fetch('/audit_v2', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                meds: document.getElementById('meds').value,
-                name_present: document.getElementById('c1').checked,
-                doc_present: document.getElementById('c2').checked,
-                diag_present: document.getElementById('c3').checked
+                meds: meds,
+                name_present: document.getElementById('check_name').checked,
+                doc_present: true, diag_present: true
             })
         });
         const data = await res.json();
-        
-        document.getElementById('result').style.display = 'block';
-        
-        // Main Results
-        let html = `
-            <h3>Audit Result</h3>
-            <p><b>Drugs in this encounter:</b> ${data.count}</p>
-            <p><b>EDL Compliance:</b> ${data.edl_pct}%</p>
-            <p><b>Antibiotic Prescribed:</b> ${data.has_antibiotic}</p>
-            
+        let reportHTML = `
+            <p><b>Medicine Count:</b> ${data.count} (Target: 1.6-1.8)</p>
+            <p><b>EDL Compliance:</b> ${data.edl_pct}% (Target: 100%)</p>
             <hr>
-            <h4 style="color: #5c6bc0;">WHO Calculation Guide</h4>
-            <p><small>Use these formulas to aggregate your data over multiple prescriptions:</small></p>
-            <ul style="font-size: 0.85em; text-align: left;">
-                <li><b>Avg Drugs:</b> ${data.formulas.avg_drugs_formula}</li>
-                <li><b>Generic %:</b> ${data.formulas.generic_formula}</li>
-                <li><b>Antibiotic %:</b> ${data.formulas.antibiotic_formula}</li>
-                <li><b>EDL Compliance %:</b> ${data.formulas.edl_formula}</li>
-            </ul>
+            <h4>Alerts:</h4><ul>${data.flags.map(f => `<li>${f}</li>`).join('')}</ul>
+            <hr>
+            <h4>WHO Calculation Formulas:</h4>
+            <p><small>Average Drugs: ${data.formulas.avg_drugs}</small></p>
+            <p><small>Antibiotic %: ${data.formulas.abx_pct}</small></p>
         `;
-        document.getElementById('details').innerHTML = html;
+        document.getElementById('report_content').innerHTML = reportHTML;
+        document.getElementById('step1').classList.remove('active');
+        document.getElementById('step4').classList.add('active');
     }
 </script>
+</body>
+</html>
