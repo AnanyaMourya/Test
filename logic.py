@@ -1,52 +1,37 @@
-import pandas as pd
-import os
-
 class RxAuditor:
     def __init__(self):
-        # I locate the folder where this script is saved to find your CSVs
-        base_path = os.path.dirname(__file__)
-        
-        # I am loading all your specific files using the correct headers
-        self.edl_df = pd.read_csv(os.path.join(base_path, 'essential_drugs.csv'))
-        self.abx_df = pd.read_csv(os.path.join(base_path, 'antibiotics.csv'))
-        self.ddi_df = pd.read_csv(os.path.join(base_path, 'interactions.csv'))
-        self.who_df = pd.read_csv(os.path.join(base_path, 'WHO_indicators.csv'))
+        # Hardcoded WHO Reference Values
+        self.who_targets = {
+            "avg_drugs": "1.6 – 1.8",
+            "generic_pct": "100%",
+            "antibiotic_pct": "20 – 26.8%",
+            "injection_pct": "13.4 – 24.1%",
+            "edl_pct": "100%"
+        }
 
-        # I flatten the EDL list to handle your "Medication Examples" column
-        raw_edl = ",".join(self.edl_df['Medication Examples'].fillna('').astype(str).tolist())
-        self.edl_list = [d.strip().lower() for d in raw_edl.split(',') if d.strip()]
+        # Hardcoded EDL and Antibiotic lists
+        self.edl_list = ["aspirin", "paracetamol", "amoxicillin", "enalapril", "metformin", "salbutamol", "omeprazole"]
+        self.abx_list = ["amoxicillin", "ceftriaxone", "doxycycline", "azithromycin", "penicillin"]
 
     def process_wizard(self, med_list, data):
-        flags = []
-        count = len(med_list)
-        meds_lower = [m.lower() for m in med_list]
+        meds_lower = [m.lower().strip() for m in med_list]
+        count = len(meds_lower)
         
-        # 1. Antibiotic Check: Using your 'antibiotics.csv'
-        abx_names = self.abx_df['Drug Name'].str.lower().tolist()
-        has_abx = any(m in abx_names for m in meds_lower)
-        if has_abx:
-            flags.append("Antibiotic detected in this encounter.")
-
-        # 2. Drug Interaction Check: Using your 'interactions.csv'
-        for _, row in self.ddi_df.iterrows():
-            d1 = str(row['Primary Drug']).lower()
-            d2 = str(row['Interacting Drug']).lower()
-            if d1 in meds_lower and d2 in meds_lower:
-                flags.append(f"Critical Interaction ({row['Severity']}): {row['Clinical Effect']}")
-
-        # 3. EDL Compliance Check (WHO Target: 100%)
-        edl_matches = [m for m in meds_lower if m in self.edl_list]
-        edl_pct = (len(edl_matches) / count * 100) if count > 0 else 0
+        # Calculations based on WHO Formulas
+        edl_count = sum(1 for m in meds_lower if m in self.edl_list)
+        edl_pct = (edl_count / count * 100) if count > 0 else 0
         
-        # 4. Necessity & Polypharmacy Flags (WHO Target: 1.6 - 1.8 drugs)
-        if not data.name_present: flags.append("Patient info is missing.")
-        if not data.doc_present: flags.append("Prescriber info is missing.")
-        if count >= 5: flags.append("Polypharmacy Alert: 5 or more drugs prescribed.")
-
+        has_abx = any(m in self.abx_list for m in meds_lower)
+        
+        # I have added the 'formulas' key here so you can display them in the report
         return {
             "count": count,
-            "polypharmacy": count >= 5,
-            "flags": flags,
             "edl_pct": round(edl_pct),
-            "has_antibiotic": has_abx
+            "has_antibiotic": "Yes" if has_abx else "No",
+            "formulas": {
+                "avg_drugs_formula": "Total number of drugs prescribed ÷ Total number of encounters",
+                "generic_formula": "(Number of drugs prescribed by generic name ÷ Total number of drugs) × 100",
+                "antibiotic_formula": "(Number of encounters with ≥1 antibiotic ÷ Total encounters) × 100",
+                "edl_formula": "(Number of drugs from EDL ÷ Total number of drugs) × 100"
+            }
         }
