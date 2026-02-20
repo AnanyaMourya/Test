@@ -1,14 +1,18 @@
 import pandas as pd
+import os
 
 class RxAuditor:
     def __init__(self):
-        # I am now loading all your CSV files so they can be used in the audit
-        self.edl_df = pd.read_csv('essential_drugs.csv')
-        self.abx_df = pd.read_csv('antibiotics.csv')
-        self.ddi_df = pd.read_csv('interactions.csv')
-        self.who_df = pd.read_csv('WHO_indicators.csv')
+        # I locate the folder where this script is saved to find your CSVs
+        base_path = os.path.dirname(__file__)
+        
+        # I am loading all your specific files using the correct headers
+        self.edl_df = pd.read_csv(os.path.join(base_path, 'essential_drugs.csv'))
+        self.abx_df = pd.read_csv(os.path.join(base_path, 'antibiotics.csv'))
+        self.ddi_df = pd.read_csv(os.path.join(base_path, 'interactions.csv'))
+        self.who_df = pd.read_csv(os.path.join(base_path, 'WHO_indicators.csv'))
 
-        # I flatten the EDL list to handle your grouped "Medication Examples" column
+        # I flatten the EDL list to handle your "Medication Examples" column
         raw_edl = ",".join(self.edl_df['Medication Examples'].fillna('').astype(str).tolist())
         self.edl_list = [d.strip().lower() for d in raw_edl.split(',') if d.strip()]
 
@@ -30,11 +34,11 @@ class RxAuditor:
             if d1 in meds_lower and d2 in meds_lower:
                 flags.append(f"Critical Interaction ({row['Severity']}): {row['Clinical Effect']}")
 
-        # 3. EDL Compliance Check
+        # 3. EDL Compliance Check (WHO Target: 100%)
         edl_matches = [m for m in meds_lower if m in self.edl_list]
         edl_pct = (len(edl_matches) / count * 100) if count > 0 else 0
         
-        # 4. Necessity & Polypharmacy Flags
+        # 4. Necessity & Polypharmacy Flags (WHO Target: 1.6 - 1.8 drugs)
         if not data.name_present: flags.append("Patient info is missing.")
         if not data.doc_present: flags.append("Prescriber info is missing.")
         if count >= 5: flags.append("Polypharmacy Alert: 5 or more drugs prescribed.")
