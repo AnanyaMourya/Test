@@ -3,7 +3,7 @@ import pandas as pd
 class RxAuditor:
     def __init__(self):
         # I check against your specific WHO indicator targets [cite: 194]
-        self.edl = pd.read_csv('essential_drugs.csv')['drug_name'].str.lower().tolist()
+        self.edl = pd.read_csv('essential_drugs.csv')['Medication Examples'].str.lower().tolist()
 
     def process_wizard(self, med_list, data):
         flags = []
