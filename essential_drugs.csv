@@ -1,0 +1,32 @@
+Category,Medication Examples,Primary Use
+Pain & Palliative Care,Acetylsalicylic acid (Aspirin),"Fever, inflammation, and mild-to-moderate pain."
+Pain & Palliative Care,Ibuprofen,"Fever, inflammation, and mild-to-moderate pain."
+Pain & Palliative Care,Paracetamol,"Fever, inflammation, and mild-to-moderate pain."
+Pain & Palliative Care,Morphine,"Fever, inflammation, and mild-to-moderate pain."
+Antibacterials,Amoxicillin,"Respiratory infections, meningitis, and skin infections."
+Antibacterials,Ceftriaxone,"Respiratory infections, meningitis, and skin infections."
+Antibacterials,Doxycycline,"Respiratory infections, meningitis, and skin infections."
+Antibacterials,Azithromycin,"Respiratory infections, meningitis, and skin infections."
+Antidiabetics,Metformin,Management of Type 2 and Type 1 Diabetes.
+Antidiabetics,Gliclazide,Management of Type 2 and Type 1 Diabetes.
+Antidiabetics,Insulin (Human),Management of Type 2 and Type 1 Diabetes.
+Cardiovascular,Amlodipine,Hypertension (high blood pressure) and cholesterol management.
+Cardiovascular,Enalapril,Hypertension (high blood pressure) and cholesterol management.
+Cardiovascular,Aspirin,Hypertension (high blood pressure) and cholesterol management.
+Cardiovascular, Atorvastatin,Hypertension (high blood pressure) and cholesterol management.
+Antivirals,Tenofovir,"HIV/AIDS, Hepatitis B"
+Antivirals,Lamivudine,"HIV/AIDS, Hepatitis B"
+Antivirals,Dolutegravir,"HIV/AIDS, Hepatitis B"
+Antiepileptics,"Carbamazepine, Phenytoin, Valproic acid",Control of seizures and epilepsy.
+Antiepileptics,Phenytoin,Control of seizures and epilepsy.
+Antiepileptics,Valporic acid,Control of seizures and epilepsy.
+Mental Health,Amitriptyline,"Depression, anxiety, and psychotic disorders."
+Mental Health,Fluoxetine,"Depression, anxiety, and psychotic disorders."
+Mental Health,Haloperidol,"Depression, anxiety, and psychotic disorders."
+Mental Health,Diazepam,"Depression, anxiety, and psychotic disorders."
+Respiratory,Salbutamol,Asthma and Chronic Obstructive Pulmonary Disease (COPD).
+Respiratory,Fluticasone,Asthma and Chronic Obstructive Pulmonary Disease (COPD).
+Respiratory,Budesonide,Asthma and Chronic Obstructive Pulmonary Disease (COPD).
+Gastrointestinal,Omeprazole,"Acid reflux, ulcers, and dehydration from diarrhea."
+Gastrointestinal,Ranitidine,"Acid reflux, ulcers, and dehydration from diarrhea."
+Gastrointestinal,ORS(Oral Rehydration Salts),"Acid reflux, ulcers, and dehydration from diarrhea."
